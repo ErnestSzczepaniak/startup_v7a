@@ -1,0 +1,6 @@
+PROJECT_NAME            = startup_v7a
+
+INPUT                   =
+INCLUDE_PATH            = 
+
+@INCLUDE                = ../../designer/DoxygenConfigGeneric
