@@ -131,27 +131,25 @@ SECTIONS
 
 	.stack (NOLOAD) : ALIGN_WITH_INPUT
   	{
-		. += __stack_size;	
+		. += __stack_size;
   	} > SDRAM
 
 	. = ALIGN(4);
 	__stack_end = .;
 
-	/*---------------------------------------------| pool |---------------------------------------------*/
+	/*---------------------------------------------| pool_sdram |---------------------------------------------*/
 
-	/*
-
-	__pool_start = .;
-
-	.pool (NOLOAD) : ALIGN_WITH_INPUT
+	.pool_sdram (NOLOAD) : ALIGN_WITH_INPUT
   	{
-		. += __pool_size;
+		*(.pool_sdram*)
   	} > SDRAM
 
-	. = ALIGN(4);
-	__pool_end = .;
+	/*---------------------------------------------| pool_ocram |---------------------------------------------*/
 
-	*/
+	.pool_ocram (NOLOAD) : ALIGN_WITH_INPUT
+  	{
+		*(.pool_ocram*)
+  	} > OCRAM
 
 	/*---------------------------------------------| end |---------------------------------------------*/
 
