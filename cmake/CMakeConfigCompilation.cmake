@@ -41,10 +41,12 @@ set(public_link_common          )
 set(public_link_target          --specs=nosys.specs -nostartfiles -T ${CMAKE_CURRENT_SOURCE_DIR}/linker/script.ld
                                 -Wl,--defsym=__sdram_start=${sdram_start_cached}
                                 -Wl,--defsym=__sdram_size=${sdram_size_cached}
+                                -Wl,--defsym=__sdram_size_stack=${sdram_size_stack_cached}
+                                -Wl,--defsym=__sdram_size_pool=${sdram_size_pool_cached}
                                 -Wl,--defsym=__ocram_start=${ocram_start_cached}
                                 -Wl,--defsym=__ocram_size=${ocram_size_cached}
-                                -Wl,--defsym=__stack_size=${stack_size_cached}
-                                -Wl,--defsym=__pool_size=${pool_size_cached})
+                                -Wl,--defsym=__ocram_size_stack=${ocram_size_stack_cached}
+                                -Wl,--defsym=__ocram_size_pool=${ocram_size_pool_cached})
 set(public_link_host            )
 
 set(private_link_common         )

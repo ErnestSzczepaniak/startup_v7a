@@ -125,41 +125,53 @@ SECTIONS
 	__bss_end = .;
 	__bss_size = __bss_end - __bss_start;
 
-	/*---------------------------------------------| stack |---------------------------------------------*/
+	/*---------------------------------------------| sdram_stack |---------------------------------------------*/
 
-	__stack_start = .;
+	__sdram_start_stack = .;
 
-	.stack (NOLOAD) : ALIGN_WITH_INPUT
+	.sdram_stack (NOLOAD) : ALIGN_WITH_INPUT
   	{
-		. += __stack_size;
+		. += __sdram_size_stack;
   	} > SDRAM
 
 	. = ALIGN(4);
-	__stack_end = .;
+	__sdram_end_stack = .;
 
-	/*---------------------------------------------| pool_sdram |---------------------------------------------*/
+	/*---------------------------------------------| sdram_pool |---------------------------------------------*/
 
-	__pool_sdram_start = .;
+	__sdram_start_pool = .;
 
-	.pool_sdram (NOLOAD) : ALIGN_WITH_INPUT
+	.sdram_pool (NOLOAD) : ALIGN_WITH_INPUT
   	{
-		. += __pool_size;
+		. += __sdram_size_pool;
   	} > SDRAM
 
 	. = ALIGN(4);
-	__pool_sdram_end = .;
+	__sdram_end_pool = .;
 
-	/*---------------------------------------------| pool_ocram |---------------------------------------------*/
+	/*---------------------------------------------| ocram_stack |---------------------------------------------*/
 
-	__pool_ocram_start = .;
+	__ocram_start_stack = .;
 
-	.pool_ocram (NOLOAD) : ALIGN_WITH_INPUT
+	.ocram_stack (NOLOAD) : ALIGN_WITH_INPUT
   	{
-		*(.pool_ocram*)
+		. += __ocram_size_stack;
   	} > OCRAM
 
 	. = ALIGN(4);
-	__pool_ocram_end = .;
+	__ocram_end_stack = .;
+
+	/*---------------------------------------------| ocram_pool |---------------------------------------------*/
+
+	__ocram_start_pool = .;
+
+	.ocram_pool (NOLOAD) : ALIGN_WITH_INPUT
+  	{
+		. += __ocram_size_pool;
+  	} > OCRAM
+
+	. = ALIGN(4);
+	__ocram_end_pool = .;
 
 	/*---------------------------------------------| end |---------------------------------------------*/
 
