@@ -139,17 +139,27 @@ SECTIONS
 
 	/*---------------------------------------------| pool_sdram |---------------------------------------------*/
 
+	__pool_sdram_start = .;
+
 	.pool_sdram (NOLOAD) : ALIGN_WITH_INPUT
   	{
-		*(.pool_sdram*)
+		. += __pool_size;
   	} > SDRAM
 
+	. = ALIGN(4);
+	__pool_sdram_end = .;
+
 	/*---------------------------------------------| pool_ocram |---------------------------------------------*/
+
+	__pool_ocram_start = .;
 
 	.pool_ocram (NOLOAD) : ALIGN_WITH_INPUT
   	{
 		*(.pool_ocram*)
   	} > OCRAM
+
+	. = ALIGN(4);
+	__pool_ocram_end = .;
 
 	/*---------------------------------------------| end |---------------------------------------------*/
 
