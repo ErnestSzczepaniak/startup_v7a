@@ -132,6 +132,7 @@ SECTIONS
 	.sdram_stack (NOLOAD) : ALIGN_WITH_INPUT
   	{
 		. += __sdram_size_stack;
+		/*(.sdram_stack*)*/
   	} > SDRAM
 
 	. = ALIGN(4);
@@ -143,7 +144,8 @@ SECTIONS
 
 	.sdram_pool (NOLOAD) : ALIGN_WITH_INPUT
   	{
-		. += __sdram_size_pool;
+	  	. += __sdram_size_pool;
+		/*(.sdram_pool*)*/
   	} > SDRAM
 
 	. = ALIGN(4);
@@ -155,7 +157,8 @@ SECTIONS
 
 	.ocram_stack (NOLOAD) : ALIGN_WITH_INPUT
   	{
-		. += __ocram_size_stack;
+	  	. += __ocram_size_stack;
+		/*(.ocram_stack*)*/
   	} > OCRAM
 
 	. = ALIGN(4);
@@ -168,6 +171,7 @@ SECTIONS
 	.ocram_pool (NOLOAD) : ALIGN_WITH_INPUT
   	{
 		. += __ocram_size_pool;
+		/*(.ocram_pool*)*/
   	} > OCRAM
 
 	. = ALIGN(4);
