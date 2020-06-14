@@ -38,7 +38,9 @@ set(private_include_host        )
 # ---------------------------------------------| link |--------------------------------------------- #
 
 set(public_link_common          )
-set(public_link_target          --specs=nosys.specs -nostartfiles -T ${CMAKE_CURRENT_SOURCE_DIR}/linker/script.ld
+set(public_link_target          --specs=nosys.specs -nostartfiles
+
+                                -T ${CMAKE_CURRENT_SOURCE_DIR}/linker/script_${memory_cached}.ld 
                                 -Wl,--defsym=__sdram_start=${sdram_start_cached}
                                 -Wl,--defsym=__sdram_size=${sdram_size_cached}
                                 -Wl,--defsym=__sdram_size_stack=${sdram_size_stack_cached}

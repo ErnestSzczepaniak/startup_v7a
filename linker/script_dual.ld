@@ -1,7 +1,7 @@
 MEMORY
 {
-  	SDRAM (rwx) : ORIGIN = __sdram_start, LENGTH = __sdram_size
-	OCRAM (rwx) : ORIGIN = __ocram_start, LENGTH = __ocram_size
+  	sdram (rwx) : ORIGIN = __sdram_start, LENGTH = __sdram_size
+	ocram (rwx) : ORIGIN = __ocram_start, LENGTH = __ocram_size
 }
 
 SECTIONS
@@ -43,7 +43,7 @@ SECTIONS
 		*(.rodata*)
 
 		KEEP(*(.eh_frame*))
-	} > SDRAM
+	} > sdram
 
 	. = ALIGN(4);
 	__text_end = .;
@@ -56,7 +56,7 @@ SECTIONS
 	.ARM.extab : ALIGN_WITH_INPUT
 	{
 		*(.ARM.extab* .gnu.linkonce.armextab.*)
-	} > SDRAM
+	} > sdram
 
 	. = ALIGN(4);
 	__extab_end = .;
@@ -69,7 +69,7 @@ SECTIONS
 	.ARM.exidx : ALIGN_WITH_INPUT
 	{
 		*(.ARM.exidx* .gnu.linkonce.armexidx.*)
-	} > SDRAM
+	} > sdram
 
 	. = ALIGN(4);
 	__exidx_end = .;	
@@ -105,7 +105,7 @@ SECTIONS
 		PROVIDE_HIDDEN (__fini_array_end = .);
 
 		KEEP(*(.jcr*))
-	} > SDRAM
+	} > sdram
 
 	. = ALIGN(4);
 	__data_end = .;
@@ -119,7 +119,7 @@ SECTIONS
 	{
 		*(.bss*)
 		*(COMMON)
-	} > SDRAM
+	} > sdram
 
 	. = ALIGN(4);
 	__bss_end = .;
@@ -132,7 +132,7 @@ SECTIONS
 	.sdram_stack (NOLOAD) : ALIGN_WITH_INPUT
   	{
 		. += __sdram_size_stack;
-  	} > SDRAM
+  	} > sdram
 
 	. = ALIGN(4);
 	__sdram_end_stack = .;
@@ -144,7 +144,7 @@ SECTIONS
 	.sdram_pool (NOLOAD) : ALIGN_WITH_INPUT
   	{
 	  	. += __sdram_size_pool;
-  	} > SDRAM
+  	} > sdram
 
 	. = ALIGN(4);
 	__sdram_end_pool = .;
@@ -156,7 +156,7 @@ SECTIONS
 	.ocram_stack (NOLOAD) : ALIGN_WITH_INPUT
   	{
 	  	. += __ocram_size_stack;
-  	} > OCRAM
+  	} > ocram
 
 	. = ALIGN(4);
 	__ocram_end_stack = .;
@@ -168,7 +168,7 @@ SECTIONS
 	.ocram_pool (NOLOAD) : ALIGN_WITH_INPUT
   	{
 		. += __ocram_size_pool;
-  	} > OCRAM
+  	} > ocram
 
 	. = ALIGN(4);
 	__ocram_end_pool = .;
@@ -177,5 +177,7 @@ SECTIONS
 
 	end = .;
 }
+
+__stack_end = __sdram_end_stack;
 
 ENTRY(__vector_start)

@@ -11,7 +11,7 @@
 
 .section .runtime
 
-	.word __sdram_end_stack
+	.word __stack_end
 	.word __handler_reset
 	.word __handler_default
 	.word __handler_default

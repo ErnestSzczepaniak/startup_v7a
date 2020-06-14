@@ -34,8 +34,9 @@ set(architecture                v7a)
 set(core                        a9)
 set(gic                         pl390)
 set(family                      c5)
-
 set(board                       de10standard)
+
+set(memory                      dual)
 
 set(sdram_start                 0x00000000)
 set(sdram_size                  1024M)
