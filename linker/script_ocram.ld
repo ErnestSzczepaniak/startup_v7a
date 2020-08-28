@@ -124,6 +124,30 @@ SECTIONS
 	__bss_end = .;
 	__bss_size = __bss_end - __bss_start;
 
+	/* ---------------------------------------------| ocram_fast_code |--------------------------------------------- */
+
+	__ocram_start_fast_code = .;
+
+	.ocram_fast_code : ALIGN_WITH_INPUT
+	{
+		*(.ocram_fast_code*)
+	} > ocram
+
+	. = ALIGN(4);
+	__ocram_end_fast_code = .;
+
+	/* ---------------------------------------------| ocram_fast_data |--------------------------------------------- */
+
+	__ocram_start_fast_data = .;
+
+	.ocram_fast_data : ALIGN_WITH_INPUT
+	{
+		*(.ocram_fast_data*)
+	} > ocram
+
+	. = ALIGN(4);
+	__ocram_end_fast_data = .;
+
 	/*---------------------------------------------| ocram_stack |---------------------------------------------*/
 
 	__ocram_start_stack = .;
@@ -147,6 +171,8 @@ SECTIONS
 
 	. = ALIGN(4);
 	__ocram_end_pool = .;
+
+
 
 	/*---------------------------------------------| end |---------------------------------------------*/
 
